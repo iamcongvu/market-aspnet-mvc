@@ -1,0 +1,229 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header {
+    Quản lý thành viên
+}
+
+<div class="form-group" style="margin-left: 12px">
+    <button type="button" class="btn btn-success" onclick="GetDataForDialog(0)">
+        <i class="fa fa-plus" aria-hidden="false"></i>
+        Thêm mới
+    </button>
+</div>
+<div class="form-group pull-right" id="Filter">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <input type="text" class="form-control" id="NameFilter" placeholder="Tên thành viên">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <input type="text" class="form-control" id="EmailFilter" placeholder="Email">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary" id="btn-Filter">Tim kiếm</button>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 2em">
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <input type="text" class="form-control" id="AddressFilter" placeholder="Địa chỉ">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <input type="text" class="form-control" id="PhoneFilter" placeholder="Số điện thoại">
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead id="thead">
+        <tr>
+            <td>STT</td>
+            <td>Thao Tác</td>
+            <td class="sort" data-sort="UserName">Tên tài khoản</td>
+            <td class="sort" data-sort="Password">Mật khẩu</td>
+            <td class="sort" data-sort="Name">Tên thành viên</td>
+            <td class="sort" data-sort="Adress">Địa chỉ</td>
+            <td class="sort" data-sort="Phone">Số điện thoại</td>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination" style="margin:0;"></ul>
+</nav>
+
+<div class="modal" id="dialog_user">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Người dùng mới</h4>
+            </div>
+
+            <!-- Modal body -->
+            <form id="formfrm">
+                <div class="modal-body">
+                    <input id="ID" name="ID" hidden />
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Họ tên:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="Name" name="Name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Tài khoản:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="UserName" name="UserName">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Mật khẩu:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="Password" name="Password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Chức vụ:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="UserGroupID" name="UserGroupID">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Địa chỉ:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="Adress" name="Adress">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Email:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="Email" name="Email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Số điện thoại:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="Phone" name="Phone">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Ngày tạo:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="date" class="form-control" id="CreateDate" name="CreateDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Tạo bởi:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="CreateBy" name="CreateBy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Ngày sửa:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="date" class="form-control" id="ModifiedDate" name="ModifiedDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Sửa bởi:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="ModifiedBy" name="ModifiedBy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Trạng thái:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="Status" name="Status">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            @*form tạm như này nhé em tùy chỉnh lại cho đẹp*@
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="SaveRecord">Ghi</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Libraryjs/Library.js"></script>
+    <script src="~/Areas/Admin/ControllerJs/Userjs/User.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+}

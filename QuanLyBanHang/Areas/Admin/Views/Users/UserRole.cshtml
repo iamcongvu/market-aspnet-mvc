@@ -1,0 +1,59 @@
+﻿@model IEnumerable<QuanLyBanHang.DTO.RoleDTO>
+@{
+    ViewBag.Title = "UserRole";
+    string ids = ViewBag.ids;
+}
+
+
+@using (Html.BeginForm("UserRoles", "Users", new { area = "Admin", id = ids }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" id="lstgroup">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-md-12">
+            <input type="checkbox" id="select_all" />
+            <label>Chọn tất cả</label>
+        </div>
+        @{
+            var x = string.Empty;
+            foreach (var item in Model)
+            {
+                var y = item.role.RoleGroup;
+                foreach(var j in item.role.RoleGroup )
+                {
+                    if (x == string.Empty || x != y)
+                    {
+                        <div class="col-md-12">
+                            <label>@item.role.RoleGroup</label>
+                        </div>
+                        x = item.role.RoleGroup;
+                    }
+                }
+                <div class="col-md-3">
+                    <div class="group">
+                        <input type="checkbox" name="Role_@item.role.RoleID" checked="@item.check" />
+                        <label>@item.role.RoleName</label>
+                    </div>
+                </div>
+            }
+
+        }
+
+        @{
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Cấp quyền" class="btn btn-sm btn-primary" />
+                </div>
+            </div>
+        }
+    </div>
+}
+@section scripts{
+    <script>
+        $('#select_all').change(function () {
+            var checkboxes = $(this).closest('form').find(':checkbox');
+            checkboxes.prop('checked', $(this).is(':checked'));
+        });
+    </script>                  
+}

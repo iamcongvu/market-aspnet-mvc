@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header {
+    Đối tác cung cấp sản phẩm    
+}
+
+<div class="form-group" style="margin-left: 12px">
+    <button type="button" class="btn btn-success" onclick="GetDataForDialog(0)">
+        <i class="fa fa-plus" aria-hidden="false"></i>
+        Thêm mới
+    </button>
+</div>
+<div class="form-group pull-right" id="Filter">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <input type="text" class="form-control" id="HoTenFilter" placeholder="Tên nhà cung cấp">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <input type="text" class="form-control" id="EmailFilter" placeholder="Email">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary" id="btn-Filter">Tim kiếm</button>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 2em">
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <input type="text" class="form-control" id="DiaChiFilter" placeholder="Địa chỉ">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <input type="text" class="form-control" id="SoDienThoaiFilter" placeholder="Số điện thoại">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 2em">
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <input type="text" class="form-control" id="FaxFilter" placeholder="Fax">
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead id="thead">
+        <tr>
+            <td>STT</td>
+            <td>Thao Tác</td>
+            <td class="sort" data-sort="TenNCC">Tên nhà cung cấp</td>
+            <td class="sort" data-sort="DiaChi">Địa chỉ</td>
+            <td class="sort" data-sort="Email">Email</td>
+            <td class="sort" data-sort="SoDienThoai">Số điện thoại</td>
+            <td class="sort" data-sort="Fax">Fax</td>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination" style="margin:0;"></ul>
+</nav>
+
+<div class="modal" id="dialog_nhacungcap">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Nhà cung cấp mới</h4>
+            </div>
+
+            <!-- Modal body -->
+            <form id="formfrm">
+                <div class="modal-body">
+                    <input id="MaNCC" name="MaNCC" hidden />
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Tên nhà cung cấp:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="TenNCC" name="TenNCC">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Địa chỉ:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="DiaChi" name="DiaChi">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Email:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="Email" name="Email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Số điện thoại:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="SoDienThoai" name="SoDienThoai">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Fax:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="Fax" name="Fax">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            @*form tạm như này nhé em tùy chỉnh lại cho đẹp*@
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="SaveRecord">Ghi</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Libraryjs/Library.js"></script>
+    <script src="~/Areas/Admin/ControllerJs/NhaCungCapjs/NhaCungCap.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+}
+
+

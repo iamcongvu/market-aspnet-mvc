@@ -1,0 +1,95 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Website</title>
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    <meta name="description" content="@ViewBag.Descriptions" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--CSS-->
+    <link href="/Assets/client/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Assets/client/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="/Assets/client/css/jquery-ui.css" rel="stylesheet" />
+    <link href="/Assets/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/Assets/client/css/slider.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/Assets/client/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Assets/client/css/bootstrap-social.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    @*@Styles.Render("~/bundles/core")*@
+
+    <!--JS-->
+    <script src="/Assets/client/js/jquery-3.4.1.min.js"></script>
+    <script src="/Assets/client/js/jquery-ui.js"></script>
+    <script src="/Assets/client/js/bootstrap-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/Assets/client/js/move-top.js"></script>
+    <script type="text/javascript" src="/Assets/client/js/easing.js"></script>
+    <script type="text/javascript" src="/Assets/client/js/startstop-slider.js"></script>
+    @*@Scripts.Render("~/bundles/jscore")*@
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="headertop_desc">
+                @{ Html.RenderAction("TopMenu", "Home");}
+            </div>
+            <div class="header_top">
+                <div class="logo">
+                    <a href="/" ref="nofollow"><img src="https://tcsc.vn/assets/images/logo.png" alt="" style="width: 350px" /></a>
+                </div>
+                @{ Html.RenderAction("HeaderCart", "Home");}
+                <script type="text/javascript">
+                    function DropDown(el) {
+                        this.dd = el;
+                        this.initEvents();
+                    }
+                    DropDown.prototype = {
+                        initEvents: function () {
+                            var obj = this;
+                            obj.dd.on('click', function (event) {
+                                $(this).toggleClass('active');
+                                event.stopPropagation();
+                            });
+                        }
+                    }
+
+                    $(function () {
+                        var dd = new DropDown($('#dd'));
+                        $(document).click(function () {
+                            // all dropdowns
+                            $('.wrapper-dropdown-2').removeClass('active');
+                        });
+                    });
+                </script>
+                <div class="clear"></div>
+            </div>
+            <div class="header_bottom">
+                @{Html.RenderAction("MainMenu", "Home");}
+                <div class="search_box">
+                    <form action="/tim-kiem" method="get">
+                        <input type="text" id="txtKeyword" name="keyword" placeholder="Gõ từ khóa"><input type="submit" value="">
+                    </form>
+                </div>
+                <div class="clear"></div>
+            </div>
+            @RenderSection("slide", required: false)@*required false thì các trang con sẽ ko bắt buộc có section*@
+        </div>
+        <div class="main">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="footer">
+        @{ Html.RenderAction("Footer", "Home");}
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $().UItoTop({ easingType: 'easeOutQuart' });
+        });
+    </script>
+    <a href="#" id="toTop"><span id="toTopHover"> </span></a>
+    @*<script src="/Assets/client/js/ControllerJS/baseController.js"></script>*@
+    @Scripts.Render("~/bundles/jscontroller")
+    @RenderSection("JSFooter", required: false)
+</body>
+</html>
+
+

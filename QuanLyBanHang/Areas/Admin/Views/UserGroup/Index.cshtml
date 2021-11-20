@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header {
+    Quản lý chức vụ thành viên
+}
+
+<div class="form-group" style="margin-left: 12px">
+    <button type="button" class="btn btn-success" onclick="GetDataForDialog(0)">
+        <i class="fas fa-plus" aria-hidden="false"></i>
+        Thêm mới
+    </button>
+</div>
+
+<div class="form-group row pull-right" id="Filter">
+    <div class="col-md-5">
+        <div class="col-md-12">
+            <input type="text" class="form-control" id="NameFilter" placeholder="Tên chức vụ">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-primary" id="btn-Filter">Tim kiếm</button>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead id="thead" class="thead-light">
+        <tr>
+            <td>STT</td>
+            <td>Thao Tác</td>
+            <td class="sort" data-sort="ID">Mã chức vụ</td>
+            <td class="sort" data-sort="TenLoai">Tên chức vụ</td>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination" style="margin:0;"></ul>
+</nav>
+
+<div class="modal" id="dialog_userGroup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Chức vụ thành viên mới</h4>
+            </div>
+
+            <!-- Modal body -->
+            <form id="formfrm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Mã chức vụ:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="ID" name="ID">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Tên chức vụ:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="Name" name="Name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="SaveRecord">Ghi</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Libraryjs/Library.js"></script>
+    <script src="~/Areas/Admin/ControllerJs/UserGroupjs/UserGroup.js"></script>
+}
+
+
+
+
+
+
+
+

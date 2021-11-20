@@ -1,0 +1,20 @@
+﻿
+@model List<QuanLyBanHang.DTO.CartItemDTO>
+
+<div class="cart">
+    <p>
+        Chào mừng bạn đến với Shoppe <span>Giỏ hàng:</span><div id="dd" class="wrapper-dropdown-2">
+            @Model.Count sản phẩm   
+            <ul class="dropdown">
+                @if(Session[QuanLyBanHang.Common.CommonConstants.CartSession] != null)
+                {
+                    foreach (var item in (List<QuanLyBanHang.DTO.CartItemDTO>)Session[QuanLyBanHang.Common.CommonConstants.CartSession])
+                    {
+                        <li><a href="/gio-hang">@item.Product.Name (@item.Product.Quantity) <img src="@item.Product.Image" style="display: inline-block; width: 30px; margin-left: 10px"></a></li>
+
+                    }
+                }
+            </ul>
+        </div>
+    </p>
+</div>

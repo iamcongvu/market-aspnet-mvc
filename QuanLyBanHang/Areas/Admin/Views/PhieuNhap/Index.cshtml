@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="form-group" style="margin-left: 12px">
+    <button type="button" class="btn btn-success" onclick="GetDataForDialog(0)">
+        <i class="fas fa-plus" aria-hidden="false"></i>
+        Thêm mới
+    </button>
+</div>
+<div class="form-group" id="Filter">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3 col-sm-offset-2">
+                <input type="text" class="form-control" id="TenNCCFilter" placeholder="Tên nhà cung cấp">
+            </div>
+            <div class="col-md-3 col-sm-offset-2">
+                <input type="date" class="form-control" id="NgayNhapFilter" placeholder="Ngày nhập" style="border-radius: 4px">
+            </div>
+            <div class="col-md-2 ">
+                <button type="button" class="btn btn-primary" id="btn-Filter">Tim kiếm</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<table class="table table-striped">
+    <thead id="thead">
+        <tr>
+            <td>STT</td>
+            <td>Thao Tác</td>
+            <td class="sort" data-sort="TenNCC">Tên nhà cung cấp</td>
+            <td class="sort" data-sort="NgayNhap">Ngày nhập</td>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination" style="margin:0;"></ul>
+</nav>
+
+<div class="modal" id="dialog_phieunhap">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Phiếu nhập mới</h4>
+            </div>
+
+            <!-- Modal body -->
+            <form id="formfrm">
+                <div class="modal-body">
+                    <input id="MaPN" name="MaPN" class="hidden" />
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Tên nhà cung cấp</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <select class="form-control" id="MaNCC">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Ngày nhập:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="date" class="form-control" id="NgayNhap" name="NgayNhap" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            @*form tạm như này nhé em tùy chỉnh lại cho đẹp*@
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="SaveRecord">Ghi</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Libraryjs/Library.js"></script>
+    <script src="~/ControllerJs/PhieuNhapjs/PhieuNhap.js"></script>
+}
+

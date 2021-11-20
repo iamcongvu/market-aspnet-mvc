@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header {
+    Quản lý loại sản phẩm
+}
+
+<div class="form-group" style="margin-left: 12px">
+    <button type="button" class="btn btn-success" onclick="GetDataForDialog(0)">
+        <i class="fa fa-plus" aria-hidden="false"></i>
+        Thêm mới
+    </button>
+</div>
+
+<div class="form-group pull-right" id="Filter">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <input type="text" class="form-control" id="TenLoaiSPFilter" placeholder="Tên loại sản phẩm">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary" id="btn-Filter">Tim kiếm</button>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead id="thead">
+        <tr>
+            <td>STT</td>
+            <td>Thao Tác</td>
+            <td class="sort" data-sort="TenLoaiSP">Tên loại sản phẩm</td>
+            <td class="sort" data-sort="Icon">Icon</td>
+            <td class="sort" data-sort="BiDanh">Bí danh</td>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination" style="margin:0;"></ul>
+</nav>
+
+<div class="modal" id="dialog_lsp">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Loại sản phẩm mới</h4>
+            </div>
+
+            <!-- Modal body -->
+            <form id="formfrm">
+                <div class="modal-body">
+                    <input id="MaLoaiSP" name="MaLoaiSP" hidden />
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Tên loại sản phẩm:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="TenLoaiSP" name="TenLoaiSP">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Icon:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="Icon" name="Icon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Bí danh:</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="BiDanh" name="BiDanh">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            @*form tạm như này nhé em tùy chỉnh lại cho đẹp*@
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="SaveRecord">Ghi</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Libraryjs/Library.js"></script>
+    <script src="~/Areas/Admin/ControllerJs/LoaiSanPhamjs/LoaiSanPham.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+}
+
+
+

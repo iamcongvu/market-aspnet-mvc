@@ -1,0 +1,16 @@
+﻿
+
+/*phân trang*/
+.pagination .page-item {
+    cursor: pointer;
+}
+
+.sort {
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+}
+
+

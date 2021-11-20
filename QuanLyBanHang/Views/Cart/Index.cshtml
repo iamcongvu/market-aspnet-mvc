@@ -1,0 +1,51 @@
+﻿@model List<QuanLyBanHang.DTO.CartItemDTO>
+@*//trang sản phẩm đã thêm và thanh toán*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content">
+    <div class="section group">
+        @if (Model.Count > 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>STT</td>
+                        <td>Mã sản phẩm</td>
+                        <td>Tên sản phẩm</td>
+                        <td>Ảnh</td>
+                        <td>Số lượng</td>
+                        <td>Đơn giá</td>
+                        <td>Thành tiền</td>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                </ul>
+            </nav>
+            <div class="pull-right">
+                Tổng tiền: <span id="txtTotalOrder"></span>
+            </div>
+
+            <button id="btnContinue" class="btn btn-primary">Tiếp tục mua hàng</button>
+            <button id="btnDeleteAll" class="btn btn-danger">Xóa tất cả sản phẩm</button>
+            <button id="btnPayment" class="btn btn-success">Thanh toán</button>
+        }
+        else
+        {
+            <span class="alert alert-danger">Giỏ hàng trống</span>
+        }
+    </div>
+</div>
+@section JSFooter{
+    <script src="~/Libraryjs/Library.js"></script>
+    <script src="~/Assets/client/js/ControllerJS/Cart.js"></script>
+}
+
